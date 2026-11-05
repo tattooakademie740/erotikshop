@@ -428,6 +428,16 @@ async function main() {
     },
   ]);
 
+  // Laufenden Shop informieren, falls erreichbar (sonst greift die normale Cache-Laufzeit).
+  const secret = process.env.REVALIDATE_SECRET;
+  if (secret) {
+    await fetch(new URL("/api/intern/revalidate", process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"), {
+      method: "POST",
+      headers: { authorization: `Bearer ${secret}`, "content-type": "application/json" },
+      body: JSON.stringify({ tags: ["catalog", "content", "search"] }),
+    }).then((r) => console.log("Cache geleert:", r.status), () => console.log("Shop nicht erreichbar, Cache nicht geleert."));
+  }
+
   const counts = await db.execute(sql`select status, count(*)::int as n from products group by status order by status`);
   console.log("Artikel nach Status:", counts);
   process.exit(0);

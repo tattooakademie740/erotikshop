@@ -16,6 +16,8 @@ import { findMatch, type DedupeCandidate } from "@/domain/dedupe";
 import { parseFeed } from "@/domain/feeds/normalize";
 import type { FeedConfig, NormalizedOffer } from "@/domain/feeds/types";
 import { normalizeGtin } from "@/domain/gtin";
+import { SHOP } from "@/config/shop";
+import { net } from "@/domain/money";
 import { calculatePrice, type PriceRule } from "@/domain/pricing";
 import { checkQuality, isPublishable } from "@/domain/quality";
 import { pickBestOffer } from "@/domain/supplier-ranking";
@@ -276,7 +278,8 @@ export async function refreshVariant(db: DB, variantId: number) {
   const price = calculatePrice(
     {
       costCents: best.costCents,
-      shippingCents: best.shippingCents,
+      // Der Kunde zahlt Versand selbst. Nur der ungedeckte Rest fließt in den Artikelpreis.
+      shippingCents: Math.max(0, best.shippingCents - net(SHOP.shippingCents)),
       categoryId: variant.categoryId,
       rrpCents: chosen.sp.rrpCents,
     },
