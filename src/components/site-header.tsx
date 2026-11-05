@@ -2,6 +2,8 @@ import Link from "next/link";
 import { SHOP } from "@/config/shop";
 import { getCategories } from "@/lib/catalog";
 import { CartBadge } from "./cart";
+import { HeartShape } from "./love-background";
+import { WishlistBadge } from "./wishlist";
 
 export function SearchForm({ defaultValue, large = false }: { defaultValue?: string; large?: boolean }) {
   return (
@@ -38,7 +40,8 @@ export async function SiteHeader() {
   return (
     <header className="z-40 border-b border-line bg-bg/90 backdrop-blur md:sticky md:top-0">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
-        <Link href="/" className="font-display text-2xl font-semibold tracking-tight text-plum">
+        <Link href="/" className="group flex items-center gap-1.5 font-display text-2xl font-semibold tracking-tight text-plum">
+          <HeartShape className="h-5 w-5 text-[#c2386d] transition group-hover:scale-125" />
           {SHOP.name}
         </Link>
         <div className="ml-auto hidden flex-1 md:block md:max-w-md">
@@ -47,7 +50,11 @@ export async function SiteHeader() {
         <Link href="/ratgeber" className="ml-auto hidden text-sm font-medium hover:text-plum sm:block md:ml-0">
           Ratgeber
         </Link>
-        <Link href="/warenkorb" className="relative ml-auto grid h-11 w-11 place-items-center rounded-full ring-1 ring-line hover:ring-plum sm:ml-0" aria-label="Warenkorb">
+        <Link href="/merkliste" className="relative ml-auto grid h-11 w-11 place-items-center rounded-full ring-1 ring-line hover:ring-plum sm:ml-0" aria-label="Merkliste">
+          <HeartShape className="h-5 w-5 text-transparent [&_path]:stroke-ink [&_path]:stroke-[1.8]" />
+          <WishlistBadge />
+        </Link>
+        <Link href="/warenkorb" className="relative grid h-11 w-11 place-items-center rounded-full ring-1 ring-line hover:ring-plum sm:ml-0" aria-label="Warenkorb">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
             <path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" />
             <path d="M9 8V6a3 3 0 0 1 6 0v2" strokeLinecap="round" />

@@ -7,6 +7,7 @@ import { AddToCart } from "@/components/cart";
 import { Price } from "@/components/price";
 import { ProductGrid } from "@/components/product-card";
 import { ProductVisual } from "@/components/product-visual";
+import { WishlistButton } from "@/components/wishlist";
 import { SHOP } from "@/config/shop";
 import { formatEuro } from "@/domain/money";
 import { getProduct, getRelated, listProducts } from "@/lib/catalog";
@@ -109,8 +110,11 @@ async function ProductContent({ params }: PageProps<"/produkt/[slug]">) {
               : "Derzeit nicht lieferbar"}
           </p>
 
-          <div className="mt-6">
-            <AddToCart variantId={v.id} disabled={!inStock} />
+          <div className="mt-6 flex items-start gap-3">
+            <div className="flex-1">
+              <AddToCart variantId={v.id} disabled={!inStock} />
+            </div>
+            <WishlistButton productId={p.id} title={p.title} size="lg" />
           </div>
 
           <ul className="mt-6 grid gap-2 rounded-3xl bg-surface p-5 text-sm ring-1 ring-line">

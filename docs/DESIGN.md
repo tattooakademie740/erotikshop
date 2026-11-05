@@ -46,3 +46,13 @@ Serif-Schrift für Überschriften, organische Formen statt expliziter Bilder.
   Kategorieseiten, neutrale Seitentitel im Browser-Tab möglich (später Option).
 - Barrierefreiheit: Kontrast mindestens 4,5:1, sichtbarer Fokus, `prefers-reduced-motion`
   schaltet Animationen ab, alle Formen haben Textalternativen.
+
+## Bewegung (Version 2)
+- Hero: langsam treibende Farbwolken, aufsteigende Herzen, feine Körnung, wechselnde Wörter („dir“, „euch“, „uns“, „heute“).
+- Laufband mit allen Kategorien in Pflaume, pausiert bei Mausberührung.
+- Elemente blenden beim Scrollen gestaffelt ein, Karten heben sich beim Überfahren.
+- Produktformen schweben leicht, Merkliste mit Herz-Puls und kleinem Funkenregen.
+- Bühne „Für zwei“: dunkler Grund mit langsam rotierendem Farbring und pulsierendem Button.
+- Barrierefreiheit: Alles ist dekorativ und für Screenreader ausgeblendet. Bei „Bewegung reduzieren“
+  stoppen alle Animationen, wechselnde Wörter bleiben stehen, eingeblendete Inhalte sind sofort sichtbar.
+  Ohne JavaScript ist ebenfalls alles sichtbar.

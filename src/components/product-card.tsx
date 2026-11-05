@@ -2,10 +2,11 @@ import Link from "next/link";
 import type { ProductCard as Card } from "@/lib/catalog";
 import { Price } from "./price";
 import { ProductVisual } from "./product-visual";
+import { WishlistButton } from "./wishlist";
 
 export function ProductCard({ p }: { p: Card }) {
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-3xl bg-surface ring-1 ring-line transition hover:ring-plum/40">
+    <article className="lift group relative flex h-full flex-col overflow-hidden rounded-3xl bg-surface ring-1 ring-line transition hover:ring-plum/40">
       <div className="relative aspect-square overflow-hidden">
         <ProductVisual src={p.image} alt={p.title} className="transition duration-500 group-hover:scale-[1.03]" />
         {p.isDemo ? (
@@ -13,6 +14,9 @@ export function ProductCard({ p }: { p: Card }) {
             DEMO
           </span>
         ) : null}
+        <div className="absolute bottom-3 right-3">
+          <WishlistButton productId={p.id} title={p.title} />
+        </div>
         {!p.inStock ? (
           <span className="absolute right-3 top-3 rounded-full bg-surface px-2 py-0.5 text-[11px] font-semibold text-muted ring-1 ring-line">
             Ausverkauft

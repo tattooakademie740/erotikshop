@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SHOP } from "@/config/shop";
+import { HeartShape } from "./love-background";
 
 const LEGAL = [
   ["impressum", "Impressum"],
@@ -15,7 +16,10 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-line bg-surface">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-3">
         <div>
-          <p className="font-display text-2xl text-plum">{SHOP.name}</p>
+          <p className="flex items-center gap-1.5 font-display text-2xl text-plum">
+            <HeartShape className="float-soft h-5 w-5 text-[#c2386d]" />
+            {SHOP.name}
+          </p>
           <p className="mt-2 max-w-xs text-sm text-muted">{SHOP.claim}</p>
         </div>
         <div>

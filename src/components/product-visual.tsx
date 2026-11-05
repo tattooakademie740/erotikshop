@@ -44,6 +44,8 @@ export function ProductVisual({ src, alt, className = "" }: { src: string | null
       <rect width="200" height="200" fill={bg} />
       <circle cx="160" cy="40" r="60" fill={fg} opacity="0.08" />
       <path
+        className="float-soft"
+        style={{ animationDelay: `${-(shape.length + color.length) % 7}s` }}
         d={SHAPES[shape] ?? SHAPES.orb}
         fill={filled ? fg : "none"}
         fillOpacity={filled ? 0.85 : 0}

@@ -93,7 +93,7 @@ export function CartBadge() {
   return (
     <span aria-live="polite" className="tabular-nums">
       {ready && count > 0 ? (
-        <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-plum px-1 text-[11px] font-bold text-white">
+        <span key={count} className="pop absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-plum px-1 text-[11px] font-bold text-white">
           {count}
           <span className="sr-only"> Artikel im Warenkorb</span>
         </span>
