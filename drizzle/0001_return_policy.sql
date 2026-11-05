@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "return_policy" text DEFAULT 'standard' NOT NULL;

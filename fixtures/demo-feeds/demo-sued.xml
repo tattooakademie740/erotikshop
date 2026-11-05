@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog><products>
+<product>
+  <sku>S-2001</sku><gtin>2000000000015</gtin><brand>Demo Marke Aurel</brand>
+  <manufacturer>DEMO Aurel GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Auflegevibrator Welle</name><teaser>Flach, leise und mit zehn Stufen.</teaser><text>DEMO-Artikel. Flach, leise und mit zehn Stufen. Material: Silikon. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/vibratoren</category>
+  <price><purchase>19.98</purchase><rrp>49.95</rrp></price>
+  <stock>17</stock><shipping_days>4</shipping_days>
+  <images><image>demo:wave:Pflaume</image></images>
+  <material>Silikon</material><color>Pflaume</color>
+  <content></content><unit></unit>
+  <attributes><attr name="antrieb">Akku (USB)</attr><attr name="wasserdicht">ja</attr><attr name="lautstaerke">leise</attr></attributes>
+</product>
+<product>
+  <sku>S-2003</sku><gtin>2000000000039</gtin><brand>Demo Marke Nuvo</brand>
+  <manufacturer>DEMO Nuvo GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Minivibrator Pebble</name><teaser>Klein, diskret und reisetauglich.</teaser><text>DEMO-Artikel. Klein, diskret und reisetauglich. Material: Silikon. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/vibratoren</category>
+  <price><purchase>10.69</purchase><rrp>24.95</rrp></price>
+  <stock>31</stock><shipping_days>4</shipping_days>
+  <images><image>demo:drop:Koralle</image></images>
+  <material>Silikon</material><color>Koralle</color>
+  <content></content><unit></unit>
+  <attributes><attr name="antrieb">Batterie</attr><attr name="wasserdicht">ja</attr><attr name="lautstaerke">leise</attr></attributes>
+</product>
+<product>
+  <sku>S-2004</sku><gtin>2000000000046</gtin><brand>Demo Marke Nuvo</brand>
+  <manufacturer>DEMO Nuvo GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Rabbit Vibrator Duo</name><teaser>Zwei Motoren, getrennt steuerbar.</teaser><text>DEMO-Artikel. Zwei Motoren, getrennt steuerbar. Material: Silikon. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/vibratoren</category>
+  <price><purchase>24.00</purchase><rrp>59.95</rrp></price>
+  <stock>38</stock><shipping_days>4</shipping_days>
+  <images><image>demo:arc:Beere</image></images>
+  <material>Silikon</material><color>Beere</color>
+  <content></content><unit></unit>
+  <attributes><attr name="antrieb">Akku (USB)</attr><attr name="wasserdicht">ja</attr><attr name="lautstaerke">mittel</attr></attributes>
+</product>
+<product>
+  <sku>S-2006</sku><gtin>2000000000060</gtin><brand>Demo Marke Nuvo</brand>
+  <manufacturer>DEMO Nuvo GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Druckwellen Stimulator Breeze</name><teaser>Berührungslose Stimulation über Luftdruck.</teaser><text>DEMO-Artikel. Berührungslose Stimulation über Luftdruck. Material: Silikon. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/vibratoren</category>
+  <price><purchase>25.11</purchase><rrp>69.95</rrp></price>
+  <stock>22</stock><shipping_days>4</shipping_days>
+  <images><image>demo:drop:Pflaume</image></images>
+  <material>Silikon</material><color>Pflaume</color>
+  <content></content><unit></unit>
+  <attributes><attr name="antrieb">Akku (USB)</attr><attr name="wasserdicht">ja</attr><attr name="lautstaerke">leise</attr></attributes>
+</product>
+<product>
+  <sku>S-2007</sku><gtin>2000000000077</gtin><brand>Demo Marke Lumen</brand>
+  <manufacturer>DEMO Lumen GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Dildo Glas Spirale</name><teaser>Temperaturspiel möglich, leicht zu reinigen.</teaser><text>DEMO-Artikel. Temperaturspiel möglich, leicht zu reinigen. Material: Borosilikatglas. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/dildos</category>
+  <price><purchase>14.00</purchase><rrp>34.95</rrp></price>
+  <stock>29</stock><shipping_days>4</shipping_days>
+  <images><image>demo:pill:Klar</image></images>
+  <material>Borosilikatglas</material><color>Klar</color>
+  <content></content><unit></unit>
+  <attributes><attr name="laenge_cm">18</attr></attributes>
+</product>
+<product>
+  <sku>S-2009</sku><gtin>2000000000091</gtin><brand>Demo Marke Lumen</brand>
+  <manufacturer>DEMO Lumen GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Dildo Edelstahl Pure</name><teaser>Schwer, glatt und langlebig.</teaser><text>DEMO-Artikel. Schwer, glatt und langlebig. Material: Edelstahl. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/dildos</category>
+  <price><purchase>29.00</purchase><rrp>69.95</rrp></price>
+  <stock>13</stock><shipping_days>4</shipping_days>
+  <images><image>demo:pill:Silber</image></images>
+  <material>Edelstahl</material><color>Silber</color>
+  <content></content><unit></unit>
+  <attributes><attr name="laenge_cm">16</attr></attributes>
+</product>
+<product>
+  <sku>S-2010</sku><gtin>2000000000107</gtin><brand>Demo Marke Nuvo</brand>
+  <manufacturer>DEMO Nuvo GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Paarvibrator Tandem</name><teaser>Mit Fernbedienung, für beide gleichzeitig.</teaser><text>DEMO-Artikel. Mit Fernbedienung, für beide gleichzeitig. Material: Silikon. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/paare</category>
+  <price><purchase>31.62</purchase><rrp>89.95</rrp></price>
+  <stock>20</stock><shipping_days>4</shipping_days>
+  <images><image>demo:arc:Pflaume</image></images>
+  <material>Silikon</material><color>Pflaume</color>
+  <content></content><unit></unit>
+  <attributes><attr name="antrieb">Akku (USB)</attr></attributes>
+</product>
+<product>
+  <sku>S-2011</sku><gtin>2000000000114</gtin><brand>Demo Marke Nuvo</brand>
+  <manufacturer>DEMO Nuvo GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Vibro Ei mit Fernbedienung</name><teaser>Reichweite bis zu zehn Meter laut Hersteller.</teaser><text>DEMO-Artikel. Reichweite bis zu zehn Meter laut Hersteller. Material: Silikon. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/paare</category>
+  <price><purchase>15.00</purchase><rrp>39.95</rrp></price>
+  <stock>27</stock><shipping_days>4</shipping_days>
+  <images><image>demo:drop:Koralle</image></images>
+  <material>Silikon</material><color>Koralle</color>
+  <content></content><unit></unit>
+  <attributes><attr name="antrieb">Akku (USB)</attr></attributes>
+</product>
+<product>
+  <sku>S-2013</sku><gtin>2000000000138</gtin><brand>Demo Marke Aurel</brand>
+  <manufacturer>DEMO Aurel GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Penisring Silikon Dreierset</name><teaser>Drei Größen, dehnbar.</teaser><text>DEMO-Artikel. Drei Größen, dehnbar. Material: Silikon. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/ihn</category>
+  <price><purchase>4.86</purchase><rrp>12.95</rrp></price>
+  <stock>11</stock><shipping_days>4</shipping_days>
+  <images><image>demo:ring:Schwarz</image></images>
+  <material>Silikon</material><color>Schwarz</color>
+  <content></content><unit></unit>
+  <attributes></attributes>
+</product>
+<product>
+  <sku>S-2014</sku><gtin>2000000000145</gtin><brand>Demo Marke Nuvo</brand>
+  <manufacturer>DEMO Nuvo GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Vibrierender Penisring</name><teaser>Mit kleinem Vibrationsmotor.</teaser><text>DEMO-Artikel. Mit kleinem Vibrationsmotor. Material: Silikon. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>toys/ihn</category>
+  <price><purchase>9.00</purchase><rrp>24.95</rrp></price>
+  <stock>18</stock><shipping_days>4</shipping_days>
+  <images><image>demo:ring:Schwarz</image></images>
+  <material>Silikon</material><color>Schwarz</color>
+  <content></content><unit></unit>
+  <attributes></attributes>
+</product>
+<product>
+  <sku>S-2017</sku><gtin>2000000000176</gtin><brand>Demo Marke Seda</brand>
+  <manufacturer>DEMO Seda GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Babydoll Satin</name><teaser>Fließender Satin mit Spitzenkante.</teaser><text>DEMO-Artikel. Fließender Satin mit Spitzenkante. Material: Polyester. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>waesche</category>
+  <price><purchase>11.00</purchase><rrp>29.95</rrp></price>
+  <stock>39</stock><shipping_days>4</shipping_days>
+  <images><image>demo:fold:Weinrot</image></images>
+  <material>Polyester</material><color>Weinrot</color>
+  <content></content><unit></unit>
+  <attributes><attr name="groesse">S, M, L</attr></attributes>
+</product>
+<product>
+  <sku>S-2019</sku><gtin>2000000000190</gtin><brand>Demo Marke Seda</brand>
+  <manufacturer>DEMO Seda GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Morgenmantel Kimono Satin</name><teaser>Leichter Kimono mit Gürtel.</teaser><text>DEMO-Artikel. Leichter Kimono mit Gürtel. Material: Polyester. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>waesche</category>
+  <price><purchase>16.00</purchase><rrp>44.95</rrp></price>
+  <stock>23</stock><shipping_days>4</shipping_days>
+  <images><image>demo:fold:Pflaume</image></images>
+  <material>Polyester</material><color>Pflaume</color>
+  <content></content><unit></unit>
+  <attributes><attr name="groesse">S/M, L/XL</attr></attributes>
+</product>
+<product>
+  <sku>S-2020</sku><gtin>2000000000206</gtin><brand>Demo Marke Pura</brand>
+  <manufacturer>DEMO Pura GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Gleitgel Wasserbasis 100 ml</name><teaser>Kondomgeeignet, parfümfrei.</teaser><text>DEMO-Artikel. Kondomgeeignet, parfümfrei. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>pflege/gleitgel</category>
+  <price><purchase>2.98</purchase><rrp>9.95</rrp></price>
+  <stock>30</stock><shipping_days>4</shipping_days>
+  <images><image>demo:drop:Klar</image></images>
+  <material></material><color>Klar</color>
+  <content>100</content><unit>ml</unit>
+  <attributes><attr name="basis">Wasser</attr><attr name="inhaltsstoffe">DEMO: Aqua, Glycerin, Hydroxyethylcellulose</attr></attributes>
+</product>
+<product>
+  <sku>S-2022</sku><gtin>2000000000220</gtin><brand>Demo Marke Pura</brand>
+  <manufacturer>DEMO Pura GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Gleitgel Aloe Vera 150 ml</name><teaser>Mit Aloe Vera, auf Wasserbasis.</teaser><text>DEMO-Artikel. Mit Aloe Vera, auf Wasserbasis. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>pflege/gleitgel</category>
+  <price><purchase>4.10</purchase><rrp>12.95</rrp></price>
+  <stock>14</stock><shipping_days>4</shipping_days>
+  <images><image>demo:drop:Klar</image></images>
+  <material></material><color>Klar</color>
+  <content>150</content><unit>ml</unit>
+  <attributes><attr name="basis">Wasser</attr><attr name="inhaltsstoffe">DEMO: Aqua, Aloe Barbadensis Leaf Juice, Glycerin</attr></attributes>
+</product>
+<product>
+  <sku>S-2024</sku><gtin>2000000000244</gtin><brand>Demo Marke Pura</brand>
+  <manufacturer>DEMO Pura GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Massageöl Mandel 100 ml</name><teaser>Mildes Mandelöl, leicht duftend.</teaser><text>DEMO-Artikel. Mildes Mandelöl, leicht duftend. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>pflege/massage</category>
+  <price><purchase>3.63</purchase><rrp>11.95</rrp></price>
+  <stock>28</stock><shipping_days>4</shipping_days>
+  <images><image>demo:drop:Gold</image></images>
+  <material></material><color>Gold</color>
+  <content>100</content><unit>ml</unit>
+  <attributes><attr name="duft">Mandel</attr><attr name="inhaltsstoffe">DEMO: Prunus Amygdalus Dulcis Oil</attr></attributes>
+</product>
+<product>
+  <sku>S-2025</sku><gtin>2000000000251</gtin><brand>Demo Marke Pura</brand>
+  <manufacturer>DEMO Pura GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Massagekerze Vanille</name><teaser>Wird zu warmem Massageöl.</teaser><text>DEMO-Artikel. Wird zu warmem Massageöl. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>pflege/massage</category>
+  <price><purchase>5.50</purchase><rrp>16.95</rrp></price>
+  <stock>35</stock><shipping_days>4</shipping_days>
+  <images><image>demo:orb:Creme</image></images>
+  <material></material><color>Creme</color>
+  <content>150</content><unit>g</unit>
+  <attributes><attr name="duft">Vanille</attr><attr name="inhaltsstoffe">DEMO: Glycine Soja Oil, Butyrospermum Parkii Butter</attr></attributes>
+</product>
+<product>
+  <sku>S-2027</sku><gtin>2000000000275</gtin><brand>Demo Marke Pura</brand>
+  <manufacturer>DEMO Pura GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Kondome Natur 12 Stück</name><teaser>Standardgröße, mit Gleitbeschichtung.</teaser><text>DEMO-Artikel. Standardgröße, mit Gleitbeschichtung. Material: Naturkautschuklatex. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>kondome</category>
+  <price><purchase>3.78</purchase><rrp>9.95</rrp></price>
+  <stock>19</stock><shipping_days>4</shipping_days>
+  <images><image>demo:box:Natur</image></images>
+  <material>Naturkautschuklatex</material><color>Natur</color>
+  <content>12</content><unit>Stück</unit>
+  <attributes><attr name="breite_mm">53</attr><attr name="latexfrei">nein</attr></attributes>
+</product>
+<product>
+  <sku>S-2028</sku><gtin>2000000000282</gtin><brand>Demo Marke Pura</brand>
+  <manufacturer>DEMO Pura GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Kondome latexfrei 10 Stück</name><teaser>Für Menschen mit Latexallergie.</teaser><text>DEMO-Artikel. Für Menschen mit Latexallergie. Material: Polyisopren. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>kondome</category>
+  <price><purchase>5.00</purchase><rrp>13.95</rrp></price>
+  <stock>26</stock><shipping_days>4</shipping_days>
+  <images><image>demo:box:Natur</image></images>
+  <material>Polyisopren</material><color>Natur</color>
+  <content>10</content><unit>Stück</unit>
+  <attributes><attr name="breite_mm">53</attr><attr name="latexfrei">ja</attr></attributes>
+</product>
+<product>
+  <sku>S-2030</sku><gtin>2000000000305</gtin><brand>Demo Marke Velo</brand>
+  <manufacturer>DEMO Velo GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Augenbinde Satin</name><teaser>Weich gepolstert, mit Gummiband.</teaser><text>DEMO-Artikel. Weich gepolstert, mit Gummiband. Material: Satin. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>fetisch</category>
+  <price><purchase>2.79</purchase><rrp>9.95</rrp></price>
+  <stock>10</stock><shipping_days>4</shipping_days>
+  <images><image>demo:fold:Schwarz</image></images>
+  <material>Satin</material><color>Schwarz</color>
+  <content></content><unit></unit>
+  <attributes></attributes>
+</product>
+<product>
+  <sku>S-2031</sku><gtin>2000000000312</gtin><brand>Demo Marke Velo</brand>
+  <manufacturer>DEMO Velo GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Handfesseln Kunstleder</name><teaser>Gepolstert, mit Schnellverschluss.</teaser><text>DEMO-Artikel. Gepolstert, mit Schnellverschluss. Material: Kunstleder. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>fetisch</category>
+  <price><purchase>7.50</purchase><rrp>19.95</rrp></price>
+  <stock>17</stock><shipping_days>4</shipping_days>
+  <images><image>demo:ring:Schwarz</image></images>
+  <material>Kunstleder</material><color>Schwarz</color>
+  <content></content><unit></unit>
+  <attributes></attributes>
+</product>
+<product>
+  <sku>S-2033</sku><gtin>2000000000336</gtin><brand>Demo Marke Fabel</brand>
+  <manufacturer>DEMO Fabel GmbH, Musterstraße 1, 00000 Demostadt</manufacturer>
+  <name>Geschenkset Wellness Abend</name><teaser>Massageöl, Kerze und Augenbinde in einer Box.</teaser><text>DEMO-Artikel. Massageöl, Kerze und Augenbinde in einer Box. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>sets</category>
+  <price><purchase>14.00</purchase><rrp>39.95</rrp></price>
+  <stock>31</stock><shipping_days>4</shipping_days>
+  <images><image>demo:box:Creme</image></images>
+  <material></material><color>Creme</color>
+  <content></content><unit></unit>
+  <attributes></attributes>
+</product>
+<product>
+  <sku>S-2036</sku><gtin>2000000000367</gtin><brand>Demo Marke Pura</brand>
+  <manufacturer></manufacturer>
+  <name>Gleitgel ohne Bilder</name><teaser>DEMO für die Review Queue.</teaser><text>DEMO-Artikel. DEMO für die Review Queue. Dieser Text ist ein Platzhalter und wird durch geprüfte Herstellerangaben ersetzt, sobald ein echter Lieferant angebunden ist.</text>
+  <category>pflege/gleitgel</category>
+  <price><purchase>2.50</purchase><rrp></rrp></price>
+  <stock>22</stock><shipping_days>4</shipping_days>
+  <images></images>
+  <material></material><color></color>
+  <content></content><unit></unit>
+  <attributes></attributes>
+</product>
+</products></catalog>
