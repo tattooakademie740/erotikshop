@@ -1,4 +1,4 @@
-# Shopname (Arbeitstitel)
+# Lustviora
 
 Online-Shop für Erotik- und Wellnessartikel mit Dropshipping von mehreren Lieferanten.
 Ausgelegt auf 100.000+ Artikel, automatischen Import, Preisberechnung und Bestellweiterleitung.
@@ -55,4 +55,4 @@ fixtures/          erzeugte DEMO-Feeds zur Ansicht
 drizzle/           SQL-Migrationen
 ```
 
-Name und Domain stehen zentral in `src/config/shop.ts`.
+Name (Lustviora) und Domain (lustviora.de) stehen zentral in `src/config/shop.ts`.

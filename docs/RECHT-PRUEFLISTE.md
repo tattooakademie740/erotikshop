@@ -1,6 +1,6 @@
 # Rechtliche Prüfliste Deutschland / EU
 
-> **Keine Rechtsberatung.** Diese Liste ist eine technische Planungshilfe für den Shop „Shopname“. Sie ersetzt keine anwaltliche Prüfung. **Jeder Punkt ist durch eine Anwältin oder einen Anwalt (idealerweise mit Schwerpunkt E-Commerce und Jugendmedienschutz) prüfen zu lassen**, bevor der Shop live geht.
+> **Keine Rechtsberatung.** Diese Liste ist eine technische Planungshilfe für den Shop „Lustviora“. Sie ersetzt keine anwaltliche Prüfung. **Jeder Punkt ist durch eine Anwältin oder einen Anwalt (idealerweise mit Schwerpunkt E-Commerce und Jugendmedienschutz) prüfen zu lassen**, bevor der Shop live geht.
 >
 > Stand: 05.11.2026. Alle Punkte haben den Status **offen**, bis sie anwaltlich freigegeben sind.
 
@@ -114,7 +114,7 @@ Hinweis: Im Auftrag stand „Grundpreis je 100 ml“. Nach der zitierten Quelle 
 | 9.2 | Produkttexte | offen | Übernahme von Herstellertexten erlaubt? Duplicate Content ist SEO-Thema, Urheberrecht ist Rechtsthema | `products.description_source` |
 | 9.3 | Markennamen | offen | Nutzung von Markennamen in URLs, Filtern, Werbung (Erschöpfungsgrundsatz) | SEO, `brands` |
 | 9.4 | Selektiver Vertrieb | offen | Haben Marken Vertriebsbeschränkungen (z. B. kein Verkauf auf Marktplätzen)? | `brands`, `supplier_products` |
-| 9.5 | Shopname und Domain | offen | Markenrecherche für „Shopname“ vor Anmeldung | Unternehmensebene |
+| 9.5 | Lustviora und Domain | offen | Markenrecherche für „Lustviora“ vor Anmeldung | Unternehmensebene |
 
 ## 10. Steuer und Sonstiges (Steuerberatung)
 

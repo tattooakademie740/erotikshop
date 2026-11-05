@@ -1,6 +1,6 @@
 # ARCHITEKTUR DES SHOPS
 
-Arbeitstitel: **Shopname**. Deutscher Onlineshop für Erotik- und Wellnessprodukte, Dropshipping von mehreren Großhändlern, hoch automatisiert, ausgelegt auf **100.000+ Produkte**.
+Name: **Lustviora** (Domain lustviora.de). Deutscher Onlineshop für Erotik- und Wellnessprodukte, Dropshipping von mehreren Großhändlern, hoch automatisiert, ausgelegt auf **100.000+ Produkte**.
 
 Stand: 05.11.2026. Verwandte Dokumente: [LIEFERANTEN.md](./LIEFERANTEN.md), [RECHT-PRUEFLISTE.md](./RECHT-PRUEFLISTE.md).
 

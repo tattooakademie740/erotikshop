@@ -1,6 +1,6 @@
 # Lieferanten-Recherche
 
-Stand der Recherche: **05.11.2026**. Arbeitstitel des Shops: **Shopname**.
+Stand der Recherche: **05.11.2026**. Shop: **Lustviora** (lustviora.de).
 
 > Grundregel dieses Dokuments: Es steht hier nur, was auf einer offiziellen Seite oder in einer klar genannten Quelle gefunden wurde. Alles andere ist als **nicht verifiziert** markiert. Keine Annahmen zu Preisen, Produktzahlen, APIs oder Konditionen. Vor jeder Integration müssen die Angaben schriftlich vom Lieferanten bestätigt werden (siehe E-Mail-Vorlage unten).
 
@@ -170,7 +170,7 @@ Betreff: Anfrage Händlerkonto und Dropshipping-Zusammenarbeit
 
 Sehr geehrte Damen und Herren,
 
-wir bauen derzeit den Onlineshop „Shopname“ für Erotik- und Wellnessprodukte
+wir bauen derzeit den Onlineshop „Lustviora“ (lustviora.de) für Erotik- und Wellnessprodukte
 mit Sitz in Deutschland auf und möchten Ihr Sortiment gern aufnehmen.
 Eine Gewerbeanmeldung liegt vor bzw. reichen wir auf Wunsch ein.
 
