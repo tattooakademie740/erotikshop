@@ -16,7 +16,9 @@
     "demo:order": "tsx --env-file=.env.local scripts/demo-order.ts",
     "admin:create": "tsx --env-file=.env.local scripts/create-admin.ts",
     "demo:return": "tsx --env-file=.env.local scripts/demo-return.ts",
-    "e2e": "node e2e/durchlauf.mjs"
+    "e2e": "node e2e/durchlauf.mjs",
+    "railway:build": "export DATABASE_URL=\"${BUILD_DATABASE_URL:-$DATABASE_URL}\"; drizzle-kit migrate && tsx scripts/bootstrap.ts && next build",
+    "worker:prod": "tsx scripts/worker.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.6.0",
@@ -28,6 +30,7 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "server-only": "^0.0.1",
+    "tsx": "^4.20.6",
     "zod": "^4.1.12"
   },
   "devDependencies": {
@@ -41,8 +44,10 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
-    "tsx": "^4.20.6",
     "typescript": "^5",
     "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=22 <23"
   }
 }

@@ -1,3 +1,4 @@
+import { atLeastOne } from "@/lib/static-params";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -30,7 +31,7 @@ const LABELS: Record<string, string> = {
 export async function generateStaticParams() {
   // Einige Artikel vorab rendern, der Rest entsteht beim ersten Aufruf.
   const { items } = await listProducts({ perPage: 12 });
-  return items.map((p) => ({ slug: p.slug }));
+  return atLeastOne(items);
 }
 
 export async function generateMetadata({ params }: PageProps<"/produkt/[slug]">): Promise<Metadata> {

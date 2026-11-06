@@ -1,3 +1,4 @@
+import { atLeastOne } from "@/lib/static-params";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -5,7 +6,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { getGuide, getGuides } from "@/lib/catalog";
 
 export async function generateStaticParams() {
-  return (await getGuides()).map((g) => ({ slug: g.slug }));
+  return atLeastOne(await getGuides());
 }
 
 export async function generateMetadata({ params }: PageProps<"/ratgeber/[slug]">): Promise<Metadata> {

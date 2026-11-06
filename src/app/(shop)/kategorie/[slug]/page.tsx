@@ -1,3 +1,4 @@
+import { atLeastOne } from "@/lib/static-params";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -8,7 +9,7 @@ import { getCategories, getCategory, getFacets, listProducts, type SortKey } fro
 
 export async function generateStaticParams() {
   const cats = await getCategories();
-  return cats.map((c) => ({ slug: c.slug }));
+  return atLeastOne(cats);
 }
 
 export async function generateMetadata({ params }: PageProps<"/kategorie/[slug]">): Promise<Metadata> {
