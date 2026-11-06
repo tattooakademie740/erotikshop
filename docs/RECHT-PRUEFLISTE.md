@@ -128,3 +128,14 @@ Hinweis: Im Auftrag stand „Grundpreis je 100 ml“. Nach der zitierten Quelle 
 
 - IT-Recht Kanzlei, „Verkauf von Erotikartikeln: Leitfaden“, Beitrag vom 23.01.2024, abgerufen 05.11.2026: https://www.it-recht-kanzlei.de/verkauf-von-erotikartikeln-leitfaden.html (Jugendschutz, Produktbilder, Hygieneausnahme mit OLG Hamm 4 U 65/15, EuGH C-681/17, BGH VIII ZR 194/16, Grundpreis je Liter, § 7 JMStV)
 - Gesetzestexte (nicht im Rahmen dieser Recherche abgerufen, Fassung vom Anwalt prüfen): BGB, DDG, TDDDG, PAngV, UWG, JMStV, JuSchG, ElektroG, BattDG, VerpackG, VO (EU) 2023/988 (GPSR), VO (EG) 1223/2009, VO (EU) 2017/745 (MDR), DSGVO.
+
+## Ergänzungen (06.11.2026): Plattform-Modell, KI-Agenten, Retouren
+
+| Nr. | Thema | Status | Frage an Anwalt | Systemkomponente |
+|---|---|---|---|---|
+| 10.1 | **Händler oder Marktplatz?** Gewünscht ist „nur Weiterleitung“. Beim Dropshipping ist der Shop rechtlich der Verkäufer (haftet für Ware, Gewährleistung, Widerruf). Ein echtes Marktplatzmodell (Lieferant ist Vertragspartner) bringt andere Pflichten: Händlerprüfung nach DSA, Kennzeichnung des Verkäufers, P2B-Verordnung, Zahlungsabwicklung für Dritte meist nur über lizenzierte Anbieter (ZAG). | offen | Welches Modell, welche Pflichten, welche Zahlungslösung? | Checkout, AGB, Produktseite (Verkäuferangabe), Zahlungen |
+| 10.2 | KI-Chat: Kennzeichnung als KI (EU AI Act Transparenzpflichten) | umgesetzt im Text, prüfen | Reicht „KI-Assistentin“ plus Hinweis im Chat? | Chat-Widget |
+| 10.3 | KI-Chat: Datenschutz, Auftragsverarbeitung mit Anthropic, Drittlandübermittlung, Hinweis in Datenschutzerklärung | offen | AVV, Rechtsgrundlage, Speicherdauer der Chats | Chat, agent_runs |
+| 10.4 | Automatische Entscheidungen bei Retouren (Art. 22 DSGVO) | offen | Ablehnung nach Regeln zulässig? Widerspruchsweg (Mensch) ist vorhanden | domain/returns.ts |
+| 10.5 | Hygiene-Ausnahme beim Widerruf: Abfrage „Versiegelung unbeschädigt“ als Selbstauskunft | offen | Genügt das, wie belegen? | Retourenformular, Lia |
+| 10.6 | Rücksendung direkt an Lieferantenlager: Kunde sieht Lieferantenadresse | offen | Informationspflichten, Kennzeichnung | Retouren-Mails |

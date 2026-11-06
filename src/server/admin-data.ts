@@ -146,3 +146,31 @@ export async function searchProducts(q: string, status?: string) {
     .orderBy(asc(s.products.title))
     .limit(200);
 }
+
+export async function getReturns() {
+  const rows = await db
+    .select({ r: s.returns, orderNumber: s.orders.number, email: s.orders.email, supplier: s.suppliers.name })
+    .from(s.returns)
+    .innerJoin(s.orders, eq(s.orders.id, s.returns.orderId))
+    .leftJoin(s.suppliers, eq(s.suppliers.id, s.returns.supplierId))
+    .orderBy(desc(s.returns.createdAt))
+    .limit(200);
+  const ids = rows.map((x) => x.r.id);
+  const items = ids.length
+    ? await db.select({ returnId: s.returnItems.returnId, qty: s.returnItems.quantity, title: s.orderItems.titleSnapshot }).from(s.returnItems).innerJoin(s.orderItems, eq(s.orderItems.id, s.returnItems.orderItemId)).where(inArray(s.returnItems.returnId, ids))
+    : [];
+  return rows.map((x) => ({ ...x, items: items.filter((i) => i.returnId === x.r.id) }));
+}
+
+export async function getServiceData() {
+  const [tickets, inbound, runs, stats] = await Promise.all([
+    db.select().from(s.supportTickets).orderBy(desc(s.supportTickets.createdAt)).limit(50),
+    db.select().from(s.inboundEmails).orderBy(desc(s.inboundEmails.createdAt)).limit(50),
+    db.select().from(s.agentRuns).orderBy(desc(s.agentRuns.createdAt)).limit(50),
+    db.execute<{ agent: string; runs: number; errors: number; input: number; output: number }>(sql`
+      select agent, count(*)::int as runs, count(*) filter (where status <> 'ok')::int as errors,
+        coalesce(sum(input_tokens), 0)::int as input, coalesce(sum(output_tokens), 0)::int as output
+      from agent_runs where created_at > now() - interval '30 days' group by agent order by agent`),
+  ]);
+  return { tickets, inbound, runs, stats: [...stats] };
+}

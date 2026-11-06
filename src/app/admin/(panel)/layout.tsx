@@ -11,6 +11,8 @@ const NAV = [
   ["/admin", "Übersicht"],
   ["/admin/aufgaben", "Aufgaben"],
   ["/admin/bestellungen", "Bestellungen"],
+  ["/admin/retouren", "Retouren"],
+  ["/admin/service", "KI & Service"],
   ["/admin/meldungen", "Meldungen"],
   ["/admin/pruefung", "Prüfliste"],
   ["/admin/produkte", "Produkte"],

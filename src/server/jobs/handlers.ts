@@ -6,7 +6,11 @@ import { markMissingOffers, runImport } from "../import-pipeline";
 import { deliverEmail } from "../mailer";
 import { handleOrderPaid, markFulfillmentFailed, recordShipment, submitFulfillment } from "../orders";
 import { API_ADAPTERS, NoApiAdapterError } from "../suppliers/adapters";
-import type { ClaimedJob, JobType } from "./queue";
+import { processReturn, refundReturn } from "../returns";
+import { agentsEnabled } from "../agents/core";
+import { enrichProduct } from "../agents/product-data";
+import { processInboundEmail } from "../agents/supplier-mail";
+import { enqueue, type ClaimedJob, type JobType } from "./queue";
 
 type DB = typeof Db;
 type Handler = (db: DB, payload: Record<string, unknown>) => Promise<void>;
@@ -42,6 +46,14 @@ export const HANDLERS: Record<JobType, Handler> = {
     const content = await fetchFeed(supplier, cfg);
     const { importRunId } = await runImport(db, supplier.id, content, cfg, { categoryMap: cfg.categoryMap ?? {}, isDemo: supplier.isDemo });
     await markMissingOffers(db, supplier.id, importRunId);
+    if (agentsEnabled()) {
+      // Neue Artikel dieses Imports: fehlende Filter-Merkmale vom Produktdaten-Agenten ergänzen lassen
+      const fresh = await db.selectDistinct({ id: s.products.id }).from(s.products)
+        .innerJoin(s.variants, eq(s.variants.productId, s.products.id))
+        .innerJoin(s.supplierProducts, eq(s.supplierProducts.variantId, s.variants.id))
+        .where(eq(s.supplierProducts.lastImportRunId, importRunId));
+      for (const f of fresh.slice(0, 500)) await enqueue(db, "product.enrich", { productId: f.id }, { dedupeKey: `product.enrich:${f.id}` });
+    }
     await revalidateShop(["catalog"]);
   },
   "order.paid": async (db, p) => handleOrderPaid(db, String(p.orderId)),
@@ -67,6 +79,19 @@ export const HANDLERS: Record<JobType, Handler> = {
     throw new Error("Noch keine Sendungsnummer"); // erneuter Versuch mit Backoff
   },
   "email.send": async (db, p) => deliverEmail(db, Number(p.emailId)),
+  "return.process": async (db, p) => processReturn(db, Number(p.returnId)),
+  "return.refund": async (db, p) => refundReturn(db, Number(p.returnId)),
+  "inbound.process": async (db, p) => {
+    if (!agentsEnabled()) {
+      await db.update(s.inboundEmails).set({ status: "needs_manual" }).where(eq(s.inboundEmails.id, Number(p.inboundEmailId)));
+      await db.insert(s.notifications).values({ level: "warning", kind: "inbound_email_manual", message: "Lieferanten-Mail eingegangen, KI-Agent ist nicht konfiguriert.", data: p });
+      return;
+    }
+    await processInboundEmail(db, Number(p.inboundEmailId));
+  },
+  "product.enrich": async (db, p) => {
+    if (agentsEnabled()) await enrichProduct(db, Number(p.productId));
+  },
 };
 
 /** Nach endgültigem Scheitern: Folgen sauber abschließen. */

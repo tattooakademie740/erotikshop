@@ -16,7 +16,11 @@ export type JobType =
   | "order.paid"
   | "fulfillment.submit"
   | "tracking.check"
-  | "email.send";
+  | "email.send"
+  | "return.process"
+  | "return.refund"
+  | "inbound.process"
+  | "product.enrich";
 
 export async function enqueue(
   db: DB,

@@ -543,6 +543,15 @@ export const returns = pgTable("returns", {
   reason: text("reason").notNull(),
   customerNote: text("customer_note"),
   refundCents: integer("refund_cents"),
+  /** Feinere Stufe im automatischen Ablauf, siehe domain/returns.ts */
+  stage: text("stage").notNull().default("requested"),
+  fulfillmentId: integer("fulfillment_id").references(() => fulfillments.id),
+  supplierId: integer("supplier_id").references(() => suppliers.id),
+  /** Retourennummer: RETOURE-<id>, steht in allen Mails */
+  reference: text("reference"),
+  supplierRma: text("supplier_rma"),
+  returnAddress: text("return_address"),
+  timeline: jsonb("timeline").$type<{ at: string; event: string; by: string }[]>().notNull().default([]),
   ...timestamps,
 });
 
@@ -672,4 +681,55 @@ export const outboundEmails = pgTable(
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => [index("outbound_emails_status_idx").on(t.status)],
+);
+
+/** Protokoll jedes KI-Agenten-Laufs: was gefragt, welche Werkzeuge, Kosten, Ergebnis. */
+export const agentRuns = pgTable(
+  "agent_runs",
+  {
+    id: serial("id").primaryKey(),
+    agent: text("agent").notNull(),
+    model: text("model").notNull(),
+    status: text("status").notNull(), // ok | refusal | error | max_turns
+    toolCalls: jsonb("tool_calls").$type<{ name: string; ok: boolean }[]>().notNull().default([]),
+    inputTokens: integer("input_tokens").notNull().default(0),
+    outputTokens: integer("output_tokens").notNull().default(0),
+    error: text("error"),
+    relatedType: text("related_type"),
+    relatedId: text("related_id"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("agent_runs_agent_idx").on(t.agent, t.createdAt)],
+);
+
+/** Übergaben an Menschen, z. B. vom Kundenservice-Agenten. */
+export const supportTickets = pgTable(
+  "support_tickets",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email"),
+    orderNumber: integer("order_number"),
+    topic: text("topic").notNull(),
+    summary: text("summary").notNull(),
+    status: text("status").notNull().default("open"), // open | answered | closed
+    source: text("source").notNull(), // "chat" | "email" | "agent:<name>"
+    ...timestamps,
+  },
+  (t) => [index("support_tickets_status_idx").on(t.status)],
+);
+
+/** Eingehende E-Mails (z. B. Antworten von Lieferanten), roh gespeichert und vom Agenten ausgewertet. */
+export const inboundEmails = pgTable(
+  "inbound_emails",
+  {
+    id: serial("id").primaryKey(),
+    from: text("from").notNull(),
+    subject: text("subject").notNull(),
+    text: text("text").notNull(),
+    status: text("status").notNull().default("new"), // new | processed | needs_manual | ignored
+    parsed: jsonb("parsed"),
+    actions: jsonb("actions"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("inbound_emails_status_idx").on(t.status)],
 );

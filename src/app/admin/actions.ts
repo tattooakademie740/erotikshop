@@ -161,3 +161,34 @@ export async function triggerImport(form: FormData) {
   await audit(user.id, "supplier.import_requested", "supplier", String(id));
   refresh();
 }
+
+/* ───────── Retouren ───────── */
+
+export async function returnAction(form: FormData) {
+  const user = await requirePermission("tasks");
+  const id = Id.parse(form.get("returnId"));
+  const action = z.enum(["instructions", "received", "refunded", "approve", "reject"]).parse(form.get("action"));
+  const by = `user:${user.email}`;
+  const { applySupplierReturnInstructions, confirmRefund, markReturnReceived, moveReturn } = await import("@/server/returns");
+  const { enqueue: enq } = await import("@/server/jobs/queue");
+  if (action === "instructions") {
+    const returnAddress = z.string().trim().min(15).max(500).parse(form.get("returnAddress"));
+    const rma = z.string().trim().max(60).optional().parse(form.get("rma") || undefined);
+    await applySupplierReturnInstructions(db, id, { returnAddress, rma }, by);
+  } else if (action === "received") await markReturnReceived(db, id, by);
+  else if (action === "refunded") await confirmRefund(db, id, by);
+  else if (action === "approve") {
+    await moveReturn(db, id, "approved", by);
+    await enq(db, "return.process", { returnId: id }, { dedupeKey: `return.process:${id}` });
+  } else await moveReturn(db, id, "rejected", by);
+  await audit(user.id, `return.${action}`, "return", String(id));
+  refresh();
+}
+
+export async function closeTicket(form: FormData) {
+  const user = await requirePermission("orders");
+  const id = Id.parse(form.get("ticketId"));
+  await db.update(s.supportTickets).set({ status: "closed" }).where(eq(s.supportTickets.id, id));
+  await audit(user.id, "ticket.close", "support_ticket", String(id));
+  refresh();
+}

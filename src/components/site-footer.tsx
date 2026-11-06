@@ -11,6 +11,9 @@ const LEGAL = [
   ["jugendschutz", "Jugendschutz"],
   ["bildnachweise", "Bildnachweise"],
 ] as const;
+const SERVICE = [
+  ["/retoure", "Retoure anmelden"],
+] as const;
 
 export function SiteFooter() {
   return (
@@ -29,6 +32,14 @@ export function SiteFooter() {
             <li>Geplant: neutrale Verpackung ohne Hinweis auf den Inhalt</li>
             <li>Geplant: neutraler Absender und Verwendungszweck</li>
             <li>Mails ohne Produktnamen im Betreff</li>
+          </ul>
+          <h2 className="mt-6 text-sm font-bold uppercase tracking-wider">Service</h2>
+          <ul className="mt-3 space-y-2 text-sm">
+            {SERVICE.map(([href, label]) => (
+              <li key={href}>
+                <Link href={href} className="text-muted underline-offset-4 hover:text-plum hover:underline">{label}</Link>
+              </li>
+            ))}
           </ul>
         </div>
         <nav aria-label="Rechtliches">

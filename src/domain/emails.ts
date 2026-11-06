@@ -99,3 +99,87 @@ export function customerOrderReceivedEmail(p: { shopName: string; firstName: str
     ].join("\n"),
   };
 }
+
+export function supplierReturnRequestEmail(p: {
+  shopName: string;
+  returnRef: string;
+  orderRef: string | null;
+  reason: string;
+  lines: SupplierOrderLine[];
+  customerName: string;
+}) {
+  const text = [
+    "Guten Tag,",
+    "",
+    `unsere Kundin bzw. unser Kunde möchte Ware aus einer Dropshipping-Lieferung zurückgeben.`,
+    `Retourennummer: ${p.returnRef}`,
+    p.orderRef ? `Ursprüngliche Bestellung: ${p.orderRef}` : null,
+    `Grund: ${p.reason}`,
+    "",
+    "ARTIKEL",
+    ...p.lines.map((l) => `- ${l.quantity} x ${l.supplierSku}  ${l.title}`),
+    "",
+    `Absender der Rücksendung: ${p.customerName}`,
+    "",
+    "Bitte antworten Sie mit:",
+    "1. Ihrer Rücksendenummer (RMA), falls Sie eine vergeben",
+    "2. der Rücksendeadresse oder einem Rücksendeetikett",
+    `3. einer kurzen Bestätigung, sobald die Ware bei Ihnen eingetroffen ist, jeweils mit der Nummer ${p.returnRef}`,
+    "",
+    "Vielen Dank",
+    p.shopName,
+  ]
+    .filter((x) => x !== null)
+    .join("\n");
+  return { subject: `Retoure ${p.returnRef}`, text };
+}
+
+export function customerReturnEmail(p: {
+  shopName: string;
+  firstName: string;
+  returnRef: string;
+  kind: "received" | "approved" | "rejected" | "instructions" | "refunded" | "manual";
+  message?: string;
+  returnAddress?: string | null;
+  supplierRma?: string | null;
+  refundCents?: number | null;
+}) {
+  const lines: (string | null)[] = [`Hallo ${p.firstName},`, ""];
+  switch (p.kind) {
+    case "received":
+      lines.push(`wir haben deine Retoure ${p.returnRef} erhalten und prüfen sie gerade.`);
+      break;
+    case "approved":
+      lines.push(`deine Retoure ${p.returnRef} ist genehmigt. Die Rücksendeadresse schicken wir dir in einer eigenen Mail, sobald sie vorliegt.`);
+      break;
+    case "rejected":
+      lines.push(`deine Retoure ${p.returnRef} können wir leider nicht annehmen.`, p.message ?? null, "", "Wenn du Fragen hast, antworte einfach auf diese Mail.");
+      break;
+    case "manual":
+      lines.push(`deine Retoure ${p.returnRef} schauen wir uns persönlich an und melden uns innerhalb von zwei Werktagen.`);
+      break;
+    case "instructions":
+      lines.push(
+        `so schickst du die Ware zurück (Retoure ${p.returnRef}):`,
+        "",
+        p.returnAddress ? `Adresse:\n${p.returnAddress}` : null,
+        p.supplierRma ? `Bitte gut sichtbar auf das Paket schreiben: ${p.supplierRma} / ${p.returnRef}` : `Bitte gut sichtbar auf das Paket schreiben: ${p.returnRef}`,
+        "",
+        "Bewahre den Einlieferungsbeleg auf, bis die Erstattung da ist.",
+      );
+      break;
+    case "refunded":
+      lines.push(`die Erstattung für deine Retoure ${p.returnRef}${p.refundCents ? ` über ${formatEuro(p.refundCents)}` : ""} ist veranlasst. Je nach Zahlungsart dauert die Gutschrift einige Tage.`);
+      break;
+  }
+  lines.push("", "Liebe Grüße", p.shopName);
+  const subjects: Record<typeof p.kind, string> = {
+    received: `Retoure ${p.returnRef} eingegangen`,
+    approved: `Retoure ${p.returnRef} genehmigt`,
+    rejected: `Zu deiner Retoure ${p.returnRef}`,
+    manual: `Zu deiner Retoure ${p.returnRef}`,
+    instructions: `Rücksendedaten zu ${p.returnRef}`,
+    refunded: `Erstattung zu ${p.returnRef}`,
+  };
+  return { subject: subjects[p.kind], text: lines.filter((x) => x !== null).join("\n") };
+}

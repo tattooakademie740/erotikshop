@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { BottomNav, InstallHint, ServiceWorker } from "@/components/app-shell";
 import { CartProvider } from "@/components/cart";
+import { ChatWidget } from "@/components/chat-widget";
 import { DemoBanner, SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SHOP } from "@/config/shop";
@@ -28,6 +29,7 @@ export default function ShopLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={null}>
           <BottomNav />
         </Suspense>
+        <ChatWidget />
         <InstallHint />
         <ServiceWorker />
       </CartProvider>
