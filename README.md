@@ -27,7 +27,8 @@ Ausgelegt auf 100.000+ Artikel, automatischen Import, Preisberechnung und Bestel
 | Shop: Start, Kategorien mit Filtern, Suche, Produkt, Warenkorb | fertig (Demo) |
 | SEO: Sitemap, robots, Canonical, Product/Breadcrumb/Organization-Schema | fertig (im Demo-Modus noindex) |
 | Kasse und Zahlung | offen, Zahlungsanbieter für Erotik muss bestätigt werden |
-| Kundenkonto, Admin-Oberfläche | offen (nächste Phase) |
+| Admin: Übersicht, Aufgaben, Bestellungen, Meldungen, Prüfliste, Produkte, Lieferanten, Preisregeln | fertig, mit Rollen und Audit-Log |
+| Kundenkonto | offen (nächste Phase) |
 | Echte Lieferanten | offen, Anfragen siehe docs/LIEFERANTEN.md |
 
 ## Lokal starten
@@ -48,6 +49,14 @@ Ablauf: Zahlung bestätigt → Lieferant je Artikel gewählt → je Lieferant ei
 Bestellung per E-Mail, API oder Portal-Aufgabe → Sendungsnummer über
 `POST /api/intern/tracking` → Kundenmail. Fehler werden wiederholt (1, 2, 4 … Minuten)
 und nach dem letzten Versuch als kritische Meldung gespeichert.
+
+## Admin
+```bash
+ADMIN_PASSWORD='mindestens-12-zeichen' npm run admin:create -- du@lustviora.de ADMIN
+```
+Dann unter `/admin` anmelden. Rollen: ADMIN, MANAGER, PRODUCT_MANAGER, CUSTOMER_SUPPORT, CONTENT_MANAGER.
+Jede Aktion prüft die Rolle serverseitig und wird im Audit-Log gespeichert. Nach 5 Fehlversuchen
+ist die Anmeldung 15 Minuten gesperrt.
 
 ## Prüfen
 ```bash

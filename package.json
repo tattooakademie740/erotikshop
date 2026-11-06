@@ -13,7 +13,8 @@
     "db:seed": "tsx --env-file=.env.local scripts/seed.ts",
     "typecheck": "tsc --noEmit",
     "worker": "tsx --env-file=.env.local scripts/worker.ts",
-    "demo:order": "tsx --env-file=.env.local scripts/demo-order.ts"
+    "demo:order": "tsx --env-file=.env.local scripts/demo-order.ts",
+    "admin:create": "tsx --env-file=.env.local scripts/create-admin.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.4",
@@ -23,6 +24,7 @@
     "postgres": "^3.4.7",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
     "zod": "^4.1.12"
   },
   "devDependencies": {

@@ -3,7 +3,7 @@
  * - Build-Dateien, Schriften, Fotos: aus dem Speicher, im Hintergrund aktualisiert
  * - Warenkorb-Aktionen, API und Server Actions: nie zwischenspeichern
  */
-const VERSION = "v1";
+const VERSION = "v2";
 const PAGES = `pages-${VERSION}`;
 const ASSETS = `assets-${VERSION}`;
 const OFFLINE = "/offline";
@@ -26,7 +26,8 @@ self.addEventListener("fetch", (event) => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
-  if (url.pathname.startsWith("/api/")) return;
+  // API und Admin nie zwischenspeichern (sensible Daten, geteilte Geräte)
+  if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/admin")) return;
 
   const isAsset =
     url.pathname.startsWith("/_next/static/") ||
