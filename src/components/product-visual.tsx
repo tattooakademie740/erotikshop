@@ -39,22 +39,46 @@ export function ProductVisual({ src, alt, className = "" }: { src: string | null
   const [, shape = "orb", color = "Creme"] = (src ?? "demo:orb:Creme").split(":");
   const [fg, bg] = PALETTE[color] ?? PALETTE.Creme;
   const filled = ["drop", "pill", "orb", "fold"].includes(shape);
+  // Eindeutige IDs je Form/Farbe, damit mehrere Bilder auf einer Seite sich nicht stören
+  const id = `pv-${shape}-${color}`.replace(/[^a-zA-Z0-9-]/g, "");
   return (
     <svg viewBox="0 0 200 200" role="img" aria-label={`${alt} (Platzhalterbild)`} className={`h-full w-full ${className}`}>
+      <defs>
+        {/* Studio-Hintergrund: oben heller, unten wärmer */}
+        <linearGradient id={`${id}-bg`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffffff" stopOpacity="0.55" />
+          <stop offset="0.6" stopColor={bg} />
+          <stop offset="1" stopColor={bg} />
+        </linearGradient>
+        {/* Glanz für Silikon-Oberflächen */}
+        <radialGradient id={`${id}-gloss`} cx="0.3" cy="0.25" r="0.8">
+          <stop offset="0" stopColor="#ffffff" stopOpacity="0.3" />
+          <stop offset="0.3" stopColor={fg} stopOpacity="0.92" />
+          <stop offset="1" stopColor={fg} />
+        </radialGradient>
+        <filter id={`${id}-soft`} x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
+      </defs>
       <rect width="200" height="200" fill={bg} />
-      <circle cx="160" cy="40" r="60" fill={fg} opacity="0.08" />
-      <path
-        className="float-soft"
-        style={{ animationDelay: `${-(shape.length + color.length) % 7}s` }}
-        d={SHAPES[shape] ?? SHAPES.orb}
-        fill={filled ? fg : "none"}
-        fillOpacity={filled ? 0.85 : 0}
-        fillRule="evenodd"
-        stroke={fg}
-        strokeWidth={filled ? 0 : 14}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <rect width="200" height="200" fill={`url(#${id}-bg)`} />
+      {/* Tischkante und weicher Bodenschatten */}
+      <rect y="168" width="200" height="32" fill={fg} opacity="0.05" />
+      <ellipse cx="102" cy="172" rx="52" ry="7" fill={fg} opacity="0.28" filter={`url(#${id}-soft)`} />
+      <circle cx="160" cy="40" r="60" fill="#ffffff" opacity="0.25" />
+      <g className="float-soft" style={{ animationDelay: `${-(shape.length + color.length) % 7}s` }}>
+        <path
+          d={SHAPES[shape] ?? SHAPES.orb}
+          fill={filled ? `url(#${id}-gloss)` : "none"}
+          fillRule="evenodd"
+          stroke={filled ? "none" : `url(#${id}-gloss)`}
+          strokeWidth={filled ? 0 : 16}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* Lichtreflex */}
+        <path d={SHAPES[shape] ?? SHAPES.orb} fill="none" stroke="#ffffff" strokeOpacity="0.35" strokeWidth={filled ? 2 : 3} strokeDasharray="18 400" strokeLinecap="round" />
+      </g>
     </svg>
   );
 }

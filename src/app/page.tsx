@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { PHOTOS, type PhotoKey } from "@/config/photos";
 import { HeartShape, LoveBackground } from "@/components/love-background";
 import { CategoryMarquee } from "@/components/marquee";
 import { Reveal, RotatingWord } from "@/components/motion";
@@ -16,17 +18,17 @@ const QUICK = [
 ] as const;
 
 /** Farbe und Form je Kategorie-Kachel */
-const TILE: Record<string, { bg: string; shape: string }> = {
+const TILE: Record<string, { bg: string; shape: string; photo?: PhotoKey }> = {
   vibratoren: { bg: "bg-[#f3dbe6]", shape: "demo:wave:Pflaume" },
   dildos: { bg: "bg-[#fde4dc]", shape: "demo:pill:Koralle" },
-  "fuer-paare": { bg: "bg-[#e5eee6]", shape: "demo:arc:Salbei" },
+  "fuer-paare": { bg: "bg-[#e5eee6]", shape: "demo:arc:Salbei", photo: "haende1" },
   "fuer-ihn": { bg: "bg-[#ece4e8]", shape: "demo:ring:Schwarz" },
-  dessous: { bg: "bg-[#f5dfe2]", shape: "demo:fold:Weinrot" },
+  dessous: { bg: "bg-[#f5dfe2]", shape: "demo:fold:Weinrot", photo: "bett" },
   "gleitgel-pflege": { bg: "bg-[#e6f1f4]", shape: "demo:drop:Klar" },
-  massage: { bg: "bg-[#faefd9]", shape: "demo:orb:Gold" },
+  massage: { bg: "bg-[#faefd9]", shape: "demo:orb:Gold", photo: "kerzen" },
   kondome: { bg: "bg-[#f7ecdf]", shape: "demo:box:Natur" },
   "fetisch-bondage": { bg: "bg-[#ece4e8]", shape: "demo:ring:Schwarz" },
-  "geschenke-sets": { bg: "bg-[#f6dce8]", shape: "demo:box:Beere" },
+  "geschenke-sets": { bg: "bg-[#f6dce8]", shape: "demo:box:Beere", photo: "blumen" },
 };
 
 export default async function Home() {
@@ -37,7 +39,8 @@ export default async function Home() {
       {/* Suche zuerst, eingebettet in einen lebendigen Hintergrund */}
       <section className="relative isolate overflow-hidden">
         <LoveBackground />
-        <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-12 sm:pb-28 sm:pt-24">
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-20 pt-12 sm:pb-28 sm:pt-20 lg:grid-cols-[1.25fr_1fr]">
+          <div>
           <p className="inline-flex items-center gap-2 rounded-full bg-surface/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-plum ring-1 ring-line backdrop-blur">
             <HeartShape className="h-3.5 w-3.5 text-[#c2386d]" /> Mit Liebe ausgesucht
           </p>
@@ -60,6 +63,8 @@ export default async function Home() {
               </li>
             ))}
           </ul>
+          </div>
+          <HeroPhotos />
         </div>
       </section>
 
@@ -80,11 +85,24 @@ export default async function Home() {
                   href={`/kategorie/${c.slug}`}
                   className={`lift group relative flex h-full min-h-36 flex-col justify-between overflow-hidden rounded-3xl p-5 ring-1 ring-line/60 hover:ring-plum ${t.bg} ${big ? "sm:min-h-80" : ""}`}
                 >
-                  <div aria-hidden className={`absolute -bottom-6 -right-6 transition duration-700 group-hover:-rotate-6 group-hover:scale-110 ${big ? "h-56 w-56 sm:h-72 sm:w-72" : "h-28 w-28"}`}>
-                    <ProductVisual src={t.shape} alt="" className="[&>rect]:fill-transparent [&>circle]:hidden" />
-                  </div>
-                  <span className={`relative font-display leading-tight ${big ? "text-4xl sm:text-6xl" : "text-xl"}`}>{c.name}</span>
-                  <span className="relative mt-4 flex items-center gap-2 text-sm text-ink/75">
+                  {t.photo ? (
+                    <>
+                      <Image
+                        src={PHOTOS[t.photo].src}
+                        alt=""
+                        fill
+                        sizes="(min-width: 640px) 25vw, 50vw"
+                        className="object-cover transition duration-700 group-hover:scale-110"
+                      />
+                      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#22101c]/85 via-[#22101c]/55 to-[#22101c]/50" />
+                    </>
+                  ) : (
+                    <div aria-hidden className={`absolute -bottom-6 -right-6 transition duration-700 group-hover:-rotate-6 group-hover:scale-110 ${big ? "h-56 w-56 sm:h-72 sm:w-72" : "h-28 w-28"}`}>
+                      <ProductVisual src={t.shape} alt="" className="[&>rect]:fill-transparent [&>circle]:hidden [&>ellipse]:hidden" />
+                    </div>
+                  )}
+                  <span className={`relative font-display leading-tight ${big ? "text-4xl sm:text-6xl" : "text-xl"} ${t.photo ? "text-white" : ""}`}>{c.name}</span>
+                  <span className={`relative mt-4 flex items-center gap-2 text-sm ${t.photo ? "text-white/90" : "text-ink/75"}`}>
                     {c.count} Artikel
                     <span aria-hidden className="transition group-hover:translate-x-1">→</span>
                   </span>
@@ -117,6 +135,11 @@ export default async function Home() {
           <div className="relative isolate overflow-hidden rounded-[2.5rem] bg-[#22101c] px-6 py-14 text-surface sm:px-14 sm:py-20">
             <div aria-hidden className="spin-slow absolute -right-40 -top-40 -z-10 h-[34rem] w-[34rem] rounded-full bg-[conic-gradient(from_0deg,#6b1d4c,#f0b08a,#c2386d,#6b1d4c)] opacity-50 blur-3xl" />
             <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_80%,rgba(194,56,109,0.35),transparent_55%)]" />
+            <div className="relative mb-10 h-64 overflow-hidden rounded-[2rem] sm:absolute sm:inset-y-10 sm:right-10 sm:mb-0 sm:h-auto sm:w-[34%]">
+              <Image src={PHOTOS.haende2.src} alt={PHOTOS.haende2.alt} fill sizes="(min-width: 640px) 34vw, 100vw" className="object-cover object-center" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#22101c]/60 to-transparent" />
+            </div>
+            <div className="sm:max-w-[58%]">
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-apricot">Für zwei</p>
             <h2 className="mt-3 max-w-2xl font-display text-4xl leading-tight sm:text-6xl">
               Mehr Nähe. Mehr Spiel. <em className="font-normal italic text-apricot">Mehr ihr.</em>
@@ -127,6 +150,7 @@ export default async function Home() {
             <Link href="/kategorie/fuer-paare" className="pulse-ring mt-8 inline-flex items-center gap-2 rounded-full bg-apricot px-7 py-4 font-semibold text-ink transition hover:bg-[#f6c3a4]">
               <HeartShape className="h-4 w-4 text-plum" /> Für Paare entdecken
             </Link>
+            </div>
           </div>
         </Reveal>
       </section>
@@ -180,5 +204,23 @@ export default async function Home() {
         </section>
       ) : null}
     </>
+  );
+}
+
+/** Foto-Komposition im Hero: Bogen mit Seide, kleines Oval mit Rose, schwebendes Herz. */
+function HeroPhotos() {
+  return (
+    <div className="relative mx-auto h-[26rem] w-full max-w-sm sm:h-[32rem] lg:max-w-none">
+      <div className="absolute inset-y-0 right-0 w-[78%] overflow-hidden rounded-t-full rounded-b-[2.5rem] shadow-[0_30px_80px_-30px_rgba(107,29,76,0.55)] ring-1 ring-white/60">
+        <Image src={PHOTOS.seide.src} alt={PHOTOS.seide.alt} fill priority sizes="(min-width: 1024px) 35vw, 80vw" className="object-cover" />
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-tr from-[#6b1d4c]/30 via-transparent to-[#f0b08a]/25 mix-blend-multiply" />
+      </div>
+      <div className="float-soft absolute bottom-8 left-0 h-44 w-36 overflow-hidden rounded-full shadow-[0_20px_50px_-20px_rgba(34,16,28,0.6)] ring-4 ring-bg sm:h-56 sm:w-44">
+        <Image src={PHOTOS.blumen.src} alt={PHOTOS.blumen.alt} fill sizes="180px" className="object-cover object-[60%_40%]" />
+      </div>
+      <div aria-hidden className="float-soft absolute right-6 top-10 grid h-16 w-16 place-items-center rounded-full bg-surface/90 shadow-lg backdrop-blur [animation-delay:-3s]">
+        <HeartShape className="h-7 w-7 text-[#c2386d]" />
+      </div>
+    </div>
   );
 }

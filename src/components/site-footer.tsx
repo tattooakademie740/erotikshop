@@ -9,6 +9,7 @@ const LEGAL = [
   ["widerruf", "Widerrufsbelehrung"],
   ["versand", "Versand & Zahlung"],
   ["jugendschutz", "Jugendschutz"],
+  ["bildnachweise", "Bildnachweise"],
 ] as const;
 
 export function SiteFooter() {

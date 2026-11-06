@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { PHOTOS } from "@/config/photos";
 
 const PAGES: Record<string, string> = {
   impressum: "Impressum",
@@ -9,6 +10,7 @@ const PAGES: Record<string, string> = {
   widerruf: "Widerrufsbelehrung",
   versand: "Versand & Zahlung",
   jugendschutz: "Jugendschutz",
+  bildnachweise: "Bildnachweise",
 };
 
 export function generateStaticParams() {
@@ -21,8 +23,10 @@ export async function generateMetadata({ params }: PageProps<"/rechtliches/[slug
 }
 
 async function Legal({ params }: PageProps<"/rechtliches/[slug]">) {
-  const title = PAGES[(await params).slug];
+  const slug = (await params).slug;
+  const title = PAGES[slug];
   if (!title) notFound();
+  if (slug === "bildnachweise") return <Credits />;
   return (
     <>
       <h1 className="font-display text-4xl">{title}</h1>
@@ -44,5 +48,22 @@ export default function LegalPage(props: PageProps<"/rechtliches/[slug]">) {
         <Legal {...props} />
       </Suspense>
     </div>
+  );
+}
+
+function Credits() {
+  return (
+    <>
+      <h1 className="font-display text-4xl">Bildnachweise</h1>
+      <p className="mt-4 text-muted">Stimmungsfotos von Unsplash, genutzt unter der Unsplash-Lizenz. Produktbilder im Demo-Shop sind gezeichnete Platzhalter.</p>
+      <ul className="mt-6 divide-y divide-line rounded-3xl bg-surface ring-1 ring-line">
+        {Object.values(PHOTOS).map((p) => (
+          <li key={p.src} className="flex flex-wrap justify-between gap-2 px-5 py-3 text-sm">
+            <span>{p.alt}</span>
+            <a href={p.url} className="text-plum underline" rel="noopener" target="_blank">Foto: {p.by} / Unsplash</a>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
