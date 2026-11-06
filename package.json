@@ -15,7 +15,8 @@
     "worker": "tsx --env-file=.env.local scripts/worker.ts",
     "demo:order": "tsx --env-file=.env.local scripts/demo-order.ts",
     "admin:create": "tsx --env-file=.env.local scripts/create-admin.ts",
-    "demo:return": "tsx --env-file=.env.local scripts/demo-return.ts"
+    "demo:return": "tsx --env-file=.env.local scripts/demo-return.ts",
+    "e2e": "node e2e/durchlauf.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.6.0",
@@ -30,6 +31,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.3",

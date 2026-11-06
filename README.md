@@ -60,6 +60,7 @@ ist die Anmeldung 15 Minuten gesperrt.
 
 ## Prüfen
 ```bash
+BASE=http://localhost:3000 ADMIN_EMAIL=… ADMIN_PASSWORD=… npm run e2e   # kompletter Durchlauf im Browser (55 Prüfungen + Barrierefreiheit)
 npm test          # Domain-Logik (Vitest)
 npm run lint
 npm run build

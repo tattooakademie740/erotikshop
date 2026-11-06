@@ -5,7 +5,8 @@
  * 3. Worker teilt auf und übermittelt (Nord per E-Mail, Süd per Portal-Aufgabe)
  * 4. Sendungsnummer kommt rein → Kundenmail
  */
-import { desc, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray, or } from "drizzle-orm";
+import { formatEuro } from "../src/domain/money";
 import { db } from "../src/db";
 import * as s from "../src/db/schema";
 import { runOnce } from "../src/server/jobs/worker";
@@ -34,7 +35,7 @@ async function main() {
     lines,
     shipping: { firstName: "Demo", lastName: "Kundin", street: "Testweg 1", zip: "12345", city: "Demostadt", country: "DE" },
   });
-  console.log(`1. Bestellung ${order.number} angelegt, ${lines.length} Artikel, Summe ${(order.totalCents / 100).toFixed(2)} €`);
+  console.log(`1. Bestellung ${order.number} angelegt, ${lines.length} Artikel, Summe ${formatEuro(order.totalCents)}`);
 
   await markPaid(db, order.id, { provider: "demo", providerRef: `demo-${order.number}`, amountCents: order.totalCents });
   console.log("2. Zahlung bestätigt (DEMO)");
@@ -59,7 +60,7 @@ async function main() {
   const mails = await db
     .select({ kind: s.outboundEmails.kind, to: s.outboundEmails.to, subject: s.outboundEmails.subject, status: s.outboundEmails.status })
     .from(s.outboundEmails)
-    .where(inArray(s.outboundEmails.relatedId, [order.id, ...fs.map((f) => String(f.id))]));
+    .where(or(and(eq(s.outboundEmails.relatedType, "order"), eq(s.outboundEmails.relatedId, order.id)), and(eq(s.outboundEmails.relatedType, "fulfillment"), inArray(s.outboundEmails.relatedId, fs.map((f) => String(f.id))))));
   console.log("5. E-Mails (ohne SMTP nur protokolliert):");
   for (const m of mails) console.log(`   - [${m.status}] ${m.kind} an ${m.to}: ${m.subject}`);
 

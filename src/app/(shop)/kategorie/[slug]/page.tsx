@@ -79,7 +79,7 @@ async function CategoryContent({ params, searchParams }: PageProps<"/kategorie/[
                       <Link
                         key={v.value}
                         href={href({ [f.key]: on ? null : v.value, seite: null })}
-                        aria-pressed={on}
+                        aria-current={on ? "true" : undefined}
                         className={`shrink-0 rounded-full px-3 py-1.5 text-sm ring-1 transition ${on ? "bg-plum text-white ring-plum" : "bg-surface ring-line hover:ring-plum"}`}
                       >
                         {v.value}

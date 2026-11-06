@@ -40,6 +40,8 @@ export function BottomNav() {
   const path = usePathname();
   const { count, ready } = useCart();
   const { ids } = useWishlist();
+  // Eigenes "mounted": Die Leiste steht in einer Suspense-Grenze und hydriert später als der
+  // CartProvider. Ohne diese Sperre wäre der Zähler beim Hydrieren schon da, im Server-HTML aber nicht.
   const [mounted, setMounted] = useState(false);
   // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
@@ -48,7 +50,7 @@ export function BottomNav() {
     { href: "/", label: "Start", icon: ICONS.start, active: path === "/" },
     { href: "/suche", label: "Suche", icon: ICONS.suche, active: path.startsWith("/suche") || path.startsWith("/kategorie") },
     { href: "/merkliste", label: "Merkliste", heart: true, active: path.startsWith("/merkliste"), badge: mounted ? ids.length : 0 },
-    { href: "/warenkorb", label: "Warenkorb", icon: ICONS.warenkorb, active: path.startsWith("/warenkorb"), badge: ready ? count : 0 },
+    { href: "/warenkorb", label: "Warenkorb", icon: ICONS.warenkorb, active: path.startsWith("/warenkorb"), badge: mounted && ready ? count : 0 },
   ];
 
   return (

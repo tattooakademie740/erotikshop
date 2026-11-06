@@ -316,7 +316,8 @@ async function main() {
   await db.execute(sql`truncate table
     review_queue, price_history, product_images, return_items, returns, shipments, order_items, fulfillments, payments, orders,
     reviews, supplier_products, variants, products, brands, import_runs, suppliers, price_rules, categories,
-    search_synonyms, content_pages, notifications, automation_jobs, audit_logs restart identity cascade`);
+    search_synonyms, content_pages, notifications, automation_jobs, audit_logs,
+    outbound_emails, inbound_emails, agent_runs, support_tickets, sessions restart identity cascade`);
 
   const cats = await db
     .insert(s.categories)

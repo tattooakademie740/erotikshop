@@ -5,14 +5,15 @@ import { CartBadge } from "./cart";
 import { HeartShape } from "./love-background";
 import { WishlistBadge } from "./wishlist";
 
-export function SearchForm({ defaultValue, large = false }: { defaultValue?: string; large?: boolean }) {
+export function SearchForm({ defaultValue, large = false, id }: { defaultValue?: string; large?: boolean; id?: string }) {
+  const inputId = id ?? (large ? "q-hero" : "q");
   return (
     <form action="/suche" role="search" className="relative w-full">
-      <label htmlFor={large ? "q-hero" : "q"} className="sr-only">
+      <label htmlFor={inputId} className="sr-only">
         Suche
       </label>
       <input
-        id={large ? "q-hero" : "q"}
+        id={inputId}
         name="q"
         type="search"
         defaultValue={defaultValue}
@@ -45,7 +46,7 @@ export async function SiteHeader() {
           {SHOP.name}
         </Link>
         <div className="ml-auto hidden flex-1 md:block md:max-w-md">
-          <SearchForm />
+          <SearchForm id="q-desktop" />
         </div>
         <Link href="/ratgeber" className="ml-auto hidden text-sm font-medium hover:text-plum sm:block md:ml-0">
           Ratgeber
@@ -63,7 +64,7 @@ export async function SiteHeader() {
         </Link>
       </div>
       <div className="mx-auto max-w-6xl px-4 pb-3 md:hidden">
-        <SearchForm />
+        <SearchForm id="q-mobile" />
       </div>
       <nav aria-label="Kategorien" className="mx-auto max-w-6xl">
         <ul className="no-scrollbar flex gap-2 overflow-x-auto px-4 pb-3">
