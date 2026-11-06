@@ -610,6 +610,8 @@ export const automationJobs = pgTable(
     id: serial("id").primaryKey(),
     type: text("type").notNull(),
     payload: jsonb("payload").notNull().default({}),
+    /** Verhindert doppelte Aufträge, z. B. "fulfillment.submit:42". */
+    dedupeKey: text("dedupe_key"),
     status: jobStatus("status").notNull().default("queued"),
     attempts: integer("attempts").notNull().default(0),
     maxAttempts: integer("max_attempts").notNull().default(5),
@@ -618,7 +620,10 @@ export const automationJobs = pgTable(
     lastError: text("last_error"),
     ...timestamps,
   },
-  (t) => [index("automation_jobs_pick_idx").on(t.status, t.runAt)],
+  (t) => [
+    index("automation_jobs_pick_idx").on(t.status, t.runAt),
+    uniqueIndex("automation_jobs_dedupe_uq").on(t.dedupeKey).where(sql`status in ('queued', 'running', 'failed')`),
+  ],
 );
 
 export const auditLogs = pgTable(
@@ -648,4 +653,23 @@ export const notifications = pgTable(
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => [index("notifications_unread_idx").on(t.readAt)],
+);
+
+/** Ausgehende E-Mails (Outbox): erst speichern, dann senden. Nichts geht verloren, alles ist nachvollziehbar. */
+export const outboundEmails = pgTable(
+  "outbound_emails",
+  {
+    id: serial("id").primaryKey(),
+    kind: text("kind").notNull(), // "supplier_order" | "customer_shipped" | ...
+    to: text("to").notNull(),
+    subject: text("subject").notNull(),
+    text: text("text").notNull(),
+    status: text("status").notNull().default("queued"), // queued | sent | failed | dev_logged
+    error: text("error"),
+    relatedType: text("related_type"),
+    relatedId: text("related_id"),
+    sentAt: timestamp("sent_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index("outbound_emails_status_idx").on(t.status)],
 );

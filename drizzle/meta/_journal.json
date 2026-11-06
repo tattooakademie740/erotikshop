@@ -15,6 +15,13 @@
       "when": 1793916361145,
       "tag": "0001_return_policy",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793930417997,
+      "tag": "0002_automation",
+      "breakpoints": true
     }
   ]
 }

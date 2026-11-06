@@ -20,11 +20,14 @@ Ausgelegt auf 100.000+ Artikel, automatischen Import, Preisberechnung und Bestel
 | Qualitätsprüfung + Review Queue | fertig, getestet |
 | Duplikaterkennung (EAN, Marke+MPN, Titelähnlichkeit) | fertig, getestet |
 | Lieferantenauswahl + Preisregeln | fertig, getestet |
-| Auftragsaufteilung + Fulfillment-Zustände | Logik fertig, noch kein Bestellprozess |
+| Bestellautomatik: Aufteilung, Weiterleitung, Sendungsnummern, Kundenmails | fertig, mit DEMO-Lieferanten getestet (`npm run demo:order`) |
+| Worker mit Wiederholung, Duplikatschutz, Fehlermeldungen | fertig (`npm run worker`) |
+| Lieferanten-Weiterleitung per E-Mail | fertig, echter Versand sobald `SMTP_URL` gesetzt ist |
+| Lieferanten-Weiterleitung per API | vorbereitet, Adapter je Lieferant sobald API-Doku vorliegt |
 | Shop: Start, Kategorien mit Filtern, Suche, Produkt, Warenkorb | fertig (Demo) |
 | SEO: Sitemap, robots, Canonical, Product/Breadcrumb/Organization-Schema | fertig (im Demo-Modus noindex) |
 | Kasse und Zahlung | offen, Zahlungsanbieter für Erotik muss bestätigt werden |
-| Kundenkonto, Admin, Bestellweiterleitung, Mails | offen (nächste Phase) |
+| Kundenkonto, Admin-Oberfläche | offen (nächste Phase) |
 | Echte Lieferanten | offen, Anfragen siehe docs/LIEFERANTEN.md |
 
 ## Lokal starten
@@ -35,6 +38,16 @@ npm run db:migrate                # Tabellen anlegen
 npm run db:seed                   # DEMO-Daten über die echte Import-Pipeline
 npm run dev
 ```
+
+## Automatik
+```bash
+npm run worker        # läuft dauerhaft: Importe, Bestellungen, Mails, Sendungsnummern
+npm run demo:order    # DEMO: komplette Bestellung von Kasse bis Versandmail
+```
+Ablauf: Zahlung bestätigt → Lieferant je Artikel gewählt → je Lieferant ein Auftrag →
+Bestellung per E-Mail, API oder Portal-Aufgabe → Sendungsnummer über
+`POST /api/intern/tracking` → Kundenmail. Fehler werden wiederholt (1, 2, 4 … Minuten)
+und nach dem letzten Versuch als kritische Meldung gespeichert.
 
 ## Prüfen
 ```bash
